@@ -8,7 +8,7 @@ const ctx=plot.getContext("2d");
 console.log(plot);
 
 function render(angle,array,edgeindex){
-  ctx.fillStyle="white;"
+  ctx.fillStyle="white"
   ctx.fillRect(0,0,plot.width,plot.height);
 //sin and cosine calc
   const sa=Math.sin(angle[0]);
@@ -21,9 +21,9 @@ function render(angle,array,edgeindex){
 //rotation logic
   const rotated=array.map(
   function(v){
-    const x=(cg*cb)*[v0]+(cg*sb*sa-sg*ca)*v[1]+(cg*sb*ca+sg*sa)*v[2];
-    const y=(sg*cb)*[v0]+(sg*sb*sa+cg*ca)*v[1]+(sg*sb*ca-cg*sa)*v[2];
-    const z=(-sb)*[v0]+(cb*sa)*v[1]+(cb*ca)*v[2];
+    const x=(cg*cb)*v[0]+(cg*sb*sa-sg*ca)*v[1]+(cg*sb*ca+sg*sa)*v[2];
+    const y=(sg*cb)*v[0]+(sg*sb*sa+cg*ca)*v[1]+(sg*sb*ca-cg*sa)*v[2];
+    const z=(-sb)*v[0]+(cb*sa)*v[1]+(cb*ca)*v[2];
  return [x,y,z];
   }
   );//end of rotated
@@ -46,7 +46,7 @@ const projected=rotated.map(
 
 //draw on canvas
 
-(projected)=>{
+function draw(projected){
   ctx.beginPath();
   for(let i=0;i<edgeindex.length;++i){
     ctx.moveTo(projected[edgeindex[i][0]][0],projected[edgeindex[i][0]][1]);
@@ -60,8 +60,9 @@ ctx.stroke();
 
 
  }//draw emd brace
+draw();
 }//render end
-function update(){
+function update(dt){
   angles[0]+=w1*dt;
   angles[1]+=w2*dt;
   angles[2]+=w3*dt;
