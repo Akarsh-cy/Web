@@ -1,12 +1,11 @@
 let camera_z=5;
 let scale=100;
 let angles=[0,0,0];
-let w1=0;
-let w2=0;
-let w3=0;
+let w1=0.5;
+let w2=0.5;
+let w3=0.5;
 const ctx=plot.getContext("2d");
 console.log(plot);
-
 function render(angle,array,edgeindex){
   ctx.fillStyle="white"
   ctx.fillRect(0,0,plot.width,plot.height);
@@ -55,12 +54,12 @@ function draw(projected){
 
 }
 ctx.strokeStyle="black";
-ctx.lineWidth=2;
+ctx.lineWidth=1;
 ctx.stroke();
 
 
  }//draw emd brace
-draw();
+draw(projected);
 }//render end
 function update(dt){
   angles[0]+=w1*dt;
@@ -82,33 +81,3 @@ function loop(timestamp) {
 
 requestAnimationFrame(loop);
 
-const vertices = [
-  [-1, -1, -1], // 0
-  [ 1, -1, -1], // 1
-  [ 1,  1, -1], // 2
-  [-1,  1, -1], // 3
-  [-1, -1,  1], // 4
-  [ 1, -1,  1], // 5
-  [ 1,  1,  1], // 6
-  [-1,  1,  1]  // 7
-];
-
-const edges = [
-  // bottom face
-  [0, 1],
-  [1, 2],
-  [2, 3],
-  [3, 0],
-
-  // top face
-  [4, 5],
-  [5, 6],
-  [6, 7],
-  [7, 4],
-
-  // vertical edges
-  [0, 4],
-  [1, 5],
-  [2, 6],
-  [3, 7]
-];
